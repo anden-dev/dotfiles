@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/Users/Engl.Andreas/.dotfiles/.github'
+let g:netrw_dirhist_6='/Users/Engl.Andreas/project-dxl-vodafone/dxl-ekscomponent-base/metrics-server/metrics-server-grape/chart'
+let g:netrw_dirhist_5='/Users/Engl.Andreas/project-dxl-vodafone/dxl-ekscomponent-base/metrics-server/metrics-server-grape'
+let g:netrw_dirhist_4='/Users/Engl.Andreas/project-dxl-vodafone/dxl-k8s-helm-charts/.githooks'
+let g:netrw_dirhist_3='/Users/Engl.Andreas'
+let g:netrw_dirhist_2='/Users/Engl.Andreas/.git-templates'
+let g:netrw_dirhist_1='/Users/Engl.Andreas/project-dxl-vodafone/dxl-comp-tf-aws-secure-baseline/modules/iam-baseline'
+let g:netrw_dirhist_0='/Users/Engl.Andreas/.dotfiles/golang'
+let g:netrw_dirhist_9='/Users/Engl.Andreas/.atom'
+let g:netrw_dirhist_8='/Users/Engl.Andreas'

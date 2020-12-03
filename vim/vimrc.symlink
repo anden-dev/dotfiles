@@ -1,0 +1,343 @@
+set nocompatible  "be iMproved
+
+" Enable syntax highlighting
+" You need to reload this file for the change to apply
+filetype off
+filetype plugin indent on
+syntax on
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+
+" Remove whitespaces and EOL
+augroup prewrites
+   autocmd!
+    autocmd BufWritePre,FileWritePre * :%s/\s\+$//e | %s/\r$//e
+augroup END
+
+" enable copy to clipboard
+set clipboard=unnamed
+
+" allow to copy paste by mouse selection
+set mouse=r
+
+" FINDING FILES:
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+
+" Display all matching files when we tab complete
+set wildmenu
+
+set wildignore+=.git,.hg,.svn
+set wildignore+=*.aux,*.out,*.toc
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.rbc,*.class
+set wildignore+=*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp
+set wildignore+=*.avi,*.divx,*.mp4,*.webm,*.mov,*.m2ts,*.mkv,*.vob,*.mpg,*.mpeg
+set wildignore+=*.mp3,*.oga,*.ogg,*.wav,*.flac
+set wildignore+=*.eot,*.otf,*.ttf,*.woff
+set wildignore+=*.doc,*.pdf,*.cbr,*.cbz
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
+set wildignore+=*.swp,.lock,.DS_Store,._*
+
+" NOW WE CAN:
+" - Hit tab to :find by partial match
+" - Use * to make it fuzzy
+
+" THINGS TO CONSIDER:
+" - :b lets you autocomplete any open buffer
+
+
+" TAG JUMPING:
+" Create the `tags` file (may need to install ctags first)
+command! MakeTags !ctags -R .
+
+" NOW WE CAN:
+" - Use ^] to jump to tag under cursor
+" - Use g^] for ambiguous tags
+" - Use ^t to jump back up the tag stack
+
+" THINGS TO CONSIDER:
+" - This doesn't help if you want a visual list of tags
+
+" AUTOCOMPLETE:
+
+" The good stuff is documented in |ins-completion|
+
+" HIGHLIGHTS:
+" - ^x^n for JUST this file
+" - ^x^f for filenames (works with our path trick!)
+" - ^x^] for tags only
+" - ^n for anything specified by the 'complete' option
+
+" NOW WE CAN:
+" - Use ^n and ^p to go back and forth in the suggestion list
+
+" FILE BROWSING:
+
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" NOW WE CAN:
+" - :edit a folder to open a file browser
+" - <CR>/v/t to open in an h-split/v-split/tab
+" - check |netrw-browse-maps| for more mappings
+"
+
+" MAPPINGS:
+" Always use bash syntax for sh filetype
+let g:is_bash=1
+
+" Buffers
+set history=500
+set hidden
+
+" Rebind <Leader> key
+let mapleader = ","
+
+" TODO have to think about this
+map <D-A-RIGHT> <C-w>l
+map <D-A-LEFT> <C-w>h
+map <D-A-DOWN> <C-w><C-w>
+map <D-A-UP> <C-w>W
+
+" MOVEMENTS:
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+" Windows
+"map <C-h> <C-w>h
+"map <C-j> <C-w>j
+"map <C-k> <C-w>k
+"map <C-l> <C-w>l
+
+nnoremap <C-h> <C-w>h " Fast moving
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" map sort function to a key
+vnoremap <Leader>s :sort<CR>
+
+" easier moving of code blocks
+" Try to go into visual mode (v), thenselect several lines of code here and
+" then press ``>`` several times.
+vnoremap < <gv  " better indentation
+vnoremap > >gv  " better indentation
+
+" Color scheme
+" mkdir -p ~/.vim/colors && cd ~/.vim/colors
+" wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
+set t_Co=256
+"color wombat256mod
+
+" Showing line numbers and length
+set number  " show line numbers
+set relativenumber
+"set tw=79   " width of document (used by gd)
+set nowrap  " don't automatically wrap on load
+set fo-=t   " don't automatically wrap text when typing
+"set colorcolumn=80
+highlight ColorColumn ctermbg=233
+
+" General
+set number  " Show line numbers
+set linebreak " Break lines at word (requires Wrap lines)
+set showbreak=+++ " Wrap-broken line prefix
+"set textwidth=100 " Line wrap (number of cols)
+set showmatch " Highlight matching brace
+
+set hlsearch  " Highlight all search results
+set smartcase " Enable smart-case search
+set ignorecase  " Always case-insensitive
+set incsearch " Searches for strings incrementally
+
+set autoindent  " Auto-indent new lines
+set expandtab " Use spaces instead of tabs
+set shiftwidth=4  " Number of auto-indent spaces
+set smartindent " Enable smart-indent
+set smarttab  " Enable smart-tabs
+set softtabstop=4 " Number of spaces per Tab
+set tabstop=4
+set shiftround
+
+" Advanced
+set ruler " Show row and column ruler information
+set undolevels=1000 " Number of undo levels
+set history=700
+
+" Make search case insensitive
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" disable backups and swaps
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Spaces Only
+au FileType swift,mustache,markdown,cpp,hpp,vim,sh,html,htmldjango,css,sass,scss,javascript,coffee,python,ruby,eruby setl expandtab nolist
+
+" Tabs Only
+au FileType c,h,make setl foldmethod=syntax noexpandtab nolist
+au FileType gitconfig,apache,sql setl noexpandtab nolist
+
+" Folding
+"au FileType html,htmldjango,css,sass,javascript,coffee,python,ruby,eruby setl foldmethod=indent foldenable
+"au FileType json setl foldmethod=indent foldenable shiftwidth=4 softtabstop=4 tabstop=4 expandtab
+
+" Tabstop/Shiftwidth
+au FileType mustache,ruby,eruby,javascript,coffee,sass,scss setl softtabstop=2 shiftwidth=2 tabstop=2
+au FileType rst setl softtabstop=3 shiftwidth=3 tabstop=3
+
+" Other
+au FileType python let b:python_highlight_all=1
+au FileType diary setl wrap linebreak nolist
+au FileType markdown setl linebreak
+
+" fix backspace
+set backspace=indent,eol,start
+
+set encoding=utf-8
+set fileencoding=utf-8
+
+
+""" Return to last edit position after closing file
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" plugins
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" :PlugInstall
+
+call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized' , { 'as': 'solarized'}
+Plug 'tpope/vim-vividchalk' , { 'as': 'vividchalk'}
+" Fuzzy search with :File
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" Fuzzy Search with CtrlP TODO Decide if you use one of those ore go with find: with ist cool enough
+" in my book.
+Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ervandew/supertab'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'airblade/vim-gitgutter'
+
+" Statuslinea
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" vim-surround: s is a text-object for delimiters; ss linewise
+" ys to add surround
+Plug 'tpope/vim-surround'
+" vim-commentary: gc is an operator to toggle comments; gcc linewise
+Plug 'tpope/vim-commentary'
+" vim-repeat: make vim-commentary and vim-surround work with .
+Plug 'tpope/vim-repeat'
+" vim-liquid: syntax stuff
+Plug 'tpope/vim-liquid'
+" vim-markdown: some stuff for fenced language highlighting
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-eunuch'
+" :FixWhitespace
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'w0rp/ale'
+Plug 'hashivim/vim-terraform'
+Plug 'editorconfig/editorconfig-vim'
+call plug#end()
+
+
+" Solarzied Config
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+" load vividchalk
+colorscheme vividchalk
+
+
+call plug#end()
+
+" ctrlp config
+let g:ctrlp_max_height = 50
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git'
+let g:ctrlp_working_path_mode = 'ar' " CtrlP scans through .git project
+let g:ctrlp_max_files = 0 " Set no max file limit
+let g:ctrlp_show_hidden = 1
+
+
+"vim gutter config
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+let g:gitgutter_updatetime = 750
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+
+"airline
+let g:airline_powerline_fonts = 1
+let g:airline_solarized_bg='dark'
+let g:airlinetheme='solarized'
+
+"markdown
+let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'yaml', 'haml', 'bash=sh']
+
+"fzf configuration
+nnoremap <silent> <leader><space> :Files<CR>
+nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader>A :Windows<CR>
+nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>o :BTags<CR>
+nnoremap <silent> <leader>O :Tags<CR>
+nnoremap <silent> <leader>? :History<CR>
+nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+nnoremap <silent> <leader>. :AgIn
+
+nnoremap <silent> K :call SearchWordWithAg()<CR>
+vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+nnoremap <silent> <leader>gl :Commits<CR>
+nnoremap <silent> <leader>ga :BCommits<CR>
+nnoremap <silent> <leader>ft :Filetypes<CR>
+
+imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+imap <C-x><C-l> <plug>(fzf-complete-line)
+
+function! SearchWordWithAg()
+  execute 'Ag' expand('<cword>')
+endfunction
+
+function! SearchVisualSelectionWithAg() range
+  let old_reg = getreg('"')
+  let old_regtype = getregtype('"')
+  let old_clipboard = &clipboard
+  set clipboard&
+  normal! ""gvy
+  let selection = getreg('"')
+  call setreg('"', old_reg, old_regtype)
+  let &clipboard = old_clipboard
+  execute 'Ag' selection
+endfunction
+
+function! SearchWithAgInDirectory(...)
+  call fzf#vim#ag(join(a:000[1:], ' '), extend({'dir': a:1}, g:fzf#vim#default_layout))
+endfunction
+command! -nargs=+ -complete=dir AgIn call SearchWithAgInDirectory(<f-args>)
+
+" ale - asynchronous lint engine
+let b:ale_linters = ['pyflakes', 'flake9', 'pylint']

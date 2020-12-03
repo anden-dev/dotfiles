@@ -1,0 +1,114 @@
+#!/bin/zsh
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
+
+# use homebrew python3
+alias python=/usr/local/bin/python3
+alias pip=/usr/local/bin/pip3
+alias mplayer="mpv --really-quiet"
+# shortcut to this dotfiles path is $DOTFILES
+export DOTFILES="$HOME/.dotfiles"
+unset TMPDIR
+# your project folder that we can `c [tab]` to
+export PROJECTS="$HOME/Code"
+
+# your default editor
+export EDITOR='vim'
+export VEDITOR='code'
+
+# home bin is first
+export PATH="$HOME/bin:$PATH";
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# dxl-aws-config specific
+export PATH="$HOME/project-dxl-vodafone/dxl-aws-config/bin:$PATH"
+export VF_TF_VERSION_DIR="$HOME/.terraform.versions"
+export VF_TF_VERSION_CMD="terraform_download.sh"
+
+export AWS_DEMO_MODE="true" # withhold secrets in ssm.sh
+export SAML2AWS_OPTS="--skip-prompt"
+export HELM_OPTS_ADDITIONAL=" --no-hooks --debug"
+
+
+# all of our zsh files
+typeset -U config_files
+config_files=($DOTFILES/*/*.zsh)
+
+# load the path files
+for file in ${(M)config_files:#*/path.zsh}; do
+  source "$file"
+done
+
+# load antibody plugins
+source ~/.zsh_plugins.sh
+
+# preserve path if openeing new tab
+if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
+  function chpwd {
+    printf '\e]7;%s\a' "file://$HOSTNAME${PWD// /%20}"
+  }
+  chpwd
+fi
+
+# load everything but the path and completion files
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
+  source "$file"
+done
+
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
+source z.sh
+
+# load every completion after autocomplete loads
+for file in ${(M)config_files:#*/completion.zsh}; do
+  source "$file"
+done
+
+unset config_files updated_at
+
+
+# use .localrc for SUPER SECRET CRAP that you don't
+# want in your public, versioned repo.
+# shellcheck disable=SC1090
+[ -f ~/.localrc ] && . ~/.localrc
+
+
+
+alias fortune_me="fortune $HOME/fortune/vodafone | lolcat"
+alias grep="ggrep"
+alias git-clean-account-branches="git branch | grep  '^  account' | xargs git branch -d"
+
+alias picture_me="/Users/Engl.Andreas/.git-templates/hooks/post-commit"
+alias record_me="terminalizer record me"
+alias render_me="terminalizer render me"
+
+alias stackwatch='watch $HOME/bin/stackstatus.sh </dev/null'
+alias set_proxy="source ~/bin/proxy"
+alias unset_proxy="unset https_proxy; unset http_proxy; unset no_proxy; unset NO_PROXY"
+
+alias record_me="terminalizer record me"
+alias render_me="terminalizer render me"
+
+alias list_cfn_stack_usage.sh="list_cfn_stack_usage.sh|lolcat"
+alias get_vip_token="oathtool -b --totp $(<$HOME/.vip_otp)"
+
+fortune $HOME/fortune/vodafone | lolcat
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+podname() {
+    kubectl get pods "$@" -o jsonpath="{.items[*].metadata.name}"
+}
+
+. $(brew --prefix asdf)/asdf.sh
+
+unsetopt nomatch
+source <(fruity completion zsh | tail -c +2)
