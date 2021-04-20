@@ -135,28 +135,21 @@ vnoremap <Leader>s :sort<CR>
 vnoremap < <gv  " better indentation
 vnoremap > >gv  " better indentation
 
-" Color scheme
-" mkdir -p ~/.vim/colors && cd ~/.vim/colors
-" wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
-"color wombat256mod
 
 " Showing line numbers and length
 set number  " show line numbers
-set relativenumber
-"set tw=79   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
-"set colorcolumn=80
 highlight ColorColumn ctermbg=233
 
 " General
 set number  " Show line numbers
 set linebreak " Break lines at word (requires Wrap lines)
 set showbreak=+++ " Wrap-broken line prefix
-"set textwidth=100 " Line wrap (number of cols)
-set showmatch " Highlight matching brace
 
+" search
+set showmatch " Highlight matching brace
 set hlsearch  " Highlight all search results
 set smartcase " Enable smart-case search
 set ignorecase  " Always case-insensitive
@@ -193,10 +186,6 @@ au FileType swift,mustache,markdown,cpp,hpp,vim,sh,html,htmldjango,css,sass,scss
 " Tabs Only
 au FileType c,h,make setl foldmethod=syntax noexpandtab nolist
 au FileType gitconfig,apache,sql setl noexpandtab nolist
-
-" Folding
-"au FileType html,htmldjango,css,sass,javascript,coffee,python,ruby,eruby setl foldmethod=indent foldenable
-"au FileType json setl foldmethod=indent foldenable shiftwidth=4 softtabstop=4 tabstop=4 expandtab
 
 " Tabstop/Shiftwidth
 au FileType mustache,ruby,eruby,javascript,coffee,sass,scss setl softtabstop=2 shiftwidth=2 tabstop=2
