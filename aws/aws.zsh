@@ -2,15 +2,20 @@
 export PATH="/usr/local/opt/awscli@1/bin:$PATH"
 # config
 
+export AWS_DEMO_MODE="true" # withhold secrets in ssm.sh
+export SAML2AWS_OPTS="--skip-prompt"
+
 export AWS_DEFAULT_REGION="eu-central-1"
+
 alias with_pcs_codecommit='AWS_PROFILE=018978742626_readonly-pcs'
 
-#alias with_sol_mgmt='AWS_PROFILE=196433213517_mgmt_sysadmin-sol'
-#alias auth_sol_mgmt='AWS_PROFILE=971374528884_mgmt_sysadmin-dxl assume_sol_mgmt_role.sh'
+# alias with_sol_mgmt='AWS_PROFILE=196433213517_mgmt_sysadmin-sol'
+# alias auth_sol_mgmt='AWS_PROFILE=971374528884_mgmt_sysadmin-dxl assume_sol_mgmt_role.sh'
 
 export VFDE_DXL_DEFAULT_ROLE=SysAdmin
 export BASE_PATH=$PATH
 export PATH="$HOME/project-dxl-vodafone/dxl-aws-config/bin:$PATH"
+
 source <(account_util account_alias --project dxl --role $VFDE_DXL_DEFAULT_ROLE)
 source <(account_util eks_alias --project dxl)
 
