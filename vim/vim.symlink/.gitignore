@@ -1,2 +1,5 @@
 plugged
 autoload/plug.vim
+# Temporary
+.netrwhist
+
