@@ -1,0 +1,182 @@
+# ~/.config/starship.toml
+
+add_newline = false
+
+#format = """
+#[┌──────────────────────────────────────────────](bold fg:#CC99CC)
+#[└─>](bold fg:#CC99CC) """
+
+format = """
+$username\
+$hostname\
+$shlvl\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$dotnet\
+$elixir\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$env_var\
+$crystal\
+$custom\
+$cmd_duration\
+$line_break\
+$lua\
+$jobs\
+$battery\
+$time\
+$status\
+$shell\
+$character"""
+
+
+[character]
+# Prompt format
+vicmd_symbol = "[V](bold green) "
+error_symbol = "[✖](bold red) "
+
+
+[shell]
+zsh_indicator = "🍏 "
+disabled = true
+
+[kubernetes]
+format = 'on [⛵ $context \($namespace\)](dimmed green) '
+disabled = true
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "🔌"
+discharging_symbol = "⚡"
+
+[[battery.display]]
+threshold = 30
+style = "bold red"
+
+
+[cmd_duration]
+min_time = 10_000  # Show command duration over 10,000 milliseconds (=10 sec)
+format = " took [$duration]($style)"
+
+[directory]
+truncation_length = 5
+format = "[$path]($style)[$lock_symbol]($lock_style) "
+read_only = "🔒"
+read_only_style= "bold white"
+truncation_symbol = "…/"
+home_symbol = "~"
+
+[git_branch]
+format = " [$symbol$branch]($style) "
+symbol = "🍣 "
+style = "bold yellow"
+
+[git_commit]
+commit_hash_length = 8
+style = "bold white"
+
+[git_state]
+progress_divider = " of "
+
+[git_status]
+conflicted = "⚔️ "
+ahead = "🏎️ 💨 ×${count}"
+behind = "🐢 ×${count}"
+diverged = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count}"
+untracked = "🛤️  ×${count}"
+stashed = "📦 "
+modified = "📝 ×${count}"
+staged = "🗃️  ×${count}"
+renamed = "📛 ×${count}"
+deleted = "🗑️  ×${count}"
+style = "bright-white"
+format = "$all_status$ahead_behind"
+
+[hostname]
+ssh_only = true
+format = "<[$hostname]($style)>"
+trim_at = "-"
+style = "bold dimmed white"
+disabled = false
+
+[memory_usage]
+format = "$symbol[${ram}( | ${swap})]($style) "
+show_percentage = true
+show_swap = true
+threshold = 70
+style = "bold dimmed white"
+disabled = false
+
+[time]
+time_format = "%T"
+format = "🕙 $time($style) "
+style = "bright-white"
+disabled = true
+
+[username]
+ssh_only = true
+style_user = "bold fg:#CC99CC"
+style_root = "white bold"
+format = " [$user@]($style)"
+disabled = false
+
+[aws]
+format = "on [$symbol$profile]($style) "
+style = "bold cyan"
+symbol = "☁️ "
+disabled = true
+
+
+[aws.region_aliases]
+us-east-1 = "est-1"
+eu-central-1 = "🍺"
+eu-west-1 = "🍀"
+
+
+[docker_context]
+format = "via [🐋 $context](blue bold)"
+
+
+[python]
+symbol = "🐍 "
+pyenv_version_name = true
+
+
+[status]
+style = "bg:blue"
+format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
+disabled = false
+
+
+[terraform]
+format = "[🏎💨 $version$workspace]($style) "

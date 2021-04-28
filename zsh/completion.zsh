@@ -13,8 +13,9 @@ zstyle ':completion:*' rehash true
 
 # menu if nb items > 2
 zstyle ':completion:*' menu select=2
-
+zstyle ':completion:*:*:make:*' tag-order 'targets'
 zstyle ':completion:*:make:*:targets' call-command true # outputs all possible results for make targets
-zstyle ':completion:*:make:*' tag-order targets
+
 #zstyle ':completion:*' group-name ''
 #zstyle ':completion:*:descriptions' format '%B%d%b'
+
