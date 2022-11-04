@@ -13,5 +13,5 @@ alias kfails='kubectl get po -owide --all-namespaces | grep "0/" | tee /dev/tty 
 alias kimg="kubectl get deployment --output=jsonpath='{.spec.template.spec.containers[*].image}'"
 
 podname() {
-    kubectl get pods "$@" -o jsonpath="{.items[*].metadata.name}"
+	kubectl get pods "$@" -o jsonpath="{.items[*].metadata.name}"
 }

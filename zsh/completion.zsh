@@ -18,4 +18,3 @@ zstyle ':completion:*:make:*:targets' call-command true # outputs all possible r
 
 #zstyle ':completion:*' group-name ''
 #zstyle ':completion:*:descriptions' format '%B%d%b'
-

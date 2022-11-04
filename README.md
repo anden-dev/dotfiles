@@ -81,4 +81,3 @@ Theme is **Monokai Night** and the font is **Fura Code Mono Retina**.
 - [Personalize your configs](/docs/PERSONALIZATION.md)
 - [Understand how it works](/docs/PHILOSOPHY.md)
 - [License](/LICENSE.md)
-

@@ -3,7 +3,6 @@ if command -v hub >/dev/null 2>&1; then
 	alias git='hub'
 fi
 
-
 alias gl='git pull --prune'
 alias glg="git log --graph --decorate --oneline --abbrev-commit"
 alias glga="glg --all"
@@ -34,7 +33,6 @@ gi() {
 alias git='nocorrect git'
 
 alias gcdroot='pushd $(git root)'
-
 
 #alias gbda='git branch --no-color --merged | command grep -vE "^(\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d'
 

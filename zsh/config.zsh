@@ -43,11 +43,11 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt auto_cd
 # autocorrect commands
 setopt correct_all
-setopt auto_list # automatically list choices on ambiguous completion
-setopt auto_menu # automatically use menu completion
-setopt always_to_end # move cursor to end if word had one match
-zstyle ':completion:*' menu select # select completions with arrow keys
-zstyle ':completion:*' group-name '' # group results by category
+setopt auto_list                                                            # automatically list choices on ambiguous completion
+setopt auto_menu                                                            # automatically use menu completion
+setopt always_to_end                                                        # move cursor to end if word had one match
+zstyle ':completion:*' menu select                                          # select completions with arrow keys
+zstyle ':completion:*' group-name ''                                        # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
 # dont ask for confirmation in rm globs*
 setopt RM_STAR_SILENT
@@ -92,4 +92,3 @@ if test -d /usr/local/opt/fzf/shell; then
 else
 	bindkey '^R' history-incremental-search-backward
 fi
-

@@ -1,10 +1,7 @@
 #!/bin/sh
 alias reload!='exec "$SHELL" -l'
 
-
 alias zshrc='${=EDITOR} ~/.zshrc' # Quick access to the ~/.zshrc file
-
-
 
 # Command line head / tail shortcuts
 alias -g H='| head'
@@ -29,7 +26,6 @@ alias help='man'
 alias p='ps -f'
 alias sortnr='sort -n -r'
 alias unexport='unset'
-
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
