@@ -231,7 +231,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
 
 " Statuslinea
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " vim-surround: s is a text-object for delimiters; ss linewise
