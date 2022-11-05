@@ -536,6 +536,12 @@ regex = '''(?i)((key|api[^Version]|token|secret|password)[a-z0-9_ .\-,]{0,25})(=
 entropy = 3.7
 secretGroup = 4
 
+keywords = [
+	"auth",
+	"password",
+	"token",
+]
+
 
 [allowlist]
 description = "global allow lists"

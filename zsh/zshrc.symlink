@@ -1,7 +1,6 @@
 #!/bin/zsh
 
-# first some fun
-fortune $HOME/fortune/vodafone | lolcat
+
 
 # HOME/bin first then homebrew, other later
 export PATH="$HOME/bin:$PATH";
@@ -129,3 +128,7 @@ setopt EXTENDED_HISTORY
 
 # https://starship.rs/
 eval "$(starship init zsh)"
+export STARSHIP_CACHE=~/.starship/cache
+
+export VF_TF_VERSION_DIR="$HOME/.terraform.versions"
+PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"

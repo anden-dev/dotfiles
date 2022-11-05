@@ -1,179 +1,38 @@
 # ~/.config/starship.toml
 
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
 
-format = """
-$username\
-$hostname\
-$shlvl\
-$kubernetes\
-$directory\
-$git_branch\
-$git_commit\
-$git_state\
-$git_status\
-$hg_branch\
-$docker_context\
-$package\
-$cmake\
-$dart\
-$dotnet\
-$elixir\
-$golang\
-$helm\
-$java\
-$julia\
-$kotlin\
-$nim\
-$nodejs\
-$ocaml\
-$perl\
-$php\
-$purescript\
-$python\
-$ruby\
-$rust\
-$scala\
-$swift\
-$terraform\
-$vagrant\
-$zig\
-$nix_shell\
-$conda\
-$memory_usage\
-$env_var\
-$crystal\
-$custom\
-$cmd_duration\
-$line_break\
-$lua\
-$jobs\
-$battery\
-$time\
-$status\
-$shell\
-$character"""
-
-
-# Wait 10 milliseconds for starship to check files under the current directory.
-scan_timeout = 10
-
-# Disable the blank line at the start of the prompt
+# Don't print a new line at the start of the prompt
 add_newline = false
 
+# makes prompt a single line
+[line_break]
+disabled = false
 
-[character]
-# Prompt format
-vicmd_symbol = "[V](bold green) "
-error_symbol = "[✖](bold red) "
-
-[shell]
-zsh_indicator = "🍏 "
+# Disable the package module, hiding it from the prompt completely
+[package]
 disabled = true
-
-[kubernetes]
-format = 'on [⛵ $context \($namespace\)](dimmed green) '
-disabled = true
-
-[battery]
-full_symbol = "🔋"
-charging_symbol = "🔌"
-discharging_symbol = "⚡"
-
-[[battery.display]]
-threshold = 30
-style = "bold red"
 
 [cmd_duration]
-min_time = 10_000  # Show command duration over 10,000 milliseconds (=10 sec)
-format = " took [$duration]($style)"
+min_time = 10_000  # Show command duration over 10,000 milliseconds (= 10 sec)
+format = "took [$duration]($style)"
 
-[directory]
-truncation_length = 5
-format = "[$path]($style)[$lock_symbol]($lock_style) "
-read_only = "🔒"
-read_only_style= "bold white"
-truncation_symbol = "…/"
-home_symbol = "~"
+[character]
+error_symbol = "[X](bold red) "
 
-[git_branch]
-symbol = "🌱 "
-truncation_length = 8
-truncation_symbol = ""
-style = "bold yellow"
+# These symbols will only show when battery levels are 20% or less
+[battery]
+charging_symbol = "⚡️ "
+discharging_symbol = "💀 "
 
-[git_commit]
-commit_hash_length = 4
-tag_symbol = "🔖 "
-style = "bold white"
+[[battery.display]]  # "bold red" style when capacity is between 0% and 20%
+threshold = 20
+style = "bold red"
 
-[git_state]
-format = '[\($state( $progress_current of $progress_total)\)]($style) '
-cherry_pick = "[🍒 PICKING](bold red)"
-
-[git_status]
-conflicted = "🏳"
-ahead = "🏎💨"
-behind = "😰"
-diverged = "😵"
-untracked = "🤷‍"
-stashed = "📦"
-modified = "📝"
-staged = '[++\($count\)](green)'
-renamed = "👅"
-deleted = "🗑"
-
-
-[hostname]
-ssh_only = true
-format = "<[$hostname]($style)>"
-trim_at = "-"
-style = "bold dimmed white"
-disabled = true
-
-[memory_usage]
-format = "$symbol[${ram}( | ${swap})]($style) "
-threshold = 70
-style = "bold dimmed white"
-disabled = false
-
-[time]
-time_format = "%T"
-format = "🐏 $time($style) "
-style = "bright-white"
-disabled = true
-
-[username]
-style_user = "bold fg:#CC99CC"
-style_root = "white bold"
-format = " [$user@]($style)"
-disabled = false
-
-[aws]
-format = "on [$symbol$profile]($style) "
-style = "bold cyan"
-symbol = "☁️ "
-disabled = true
-
-
-[aws.region_aliases]
-us-east-1 = "est-1"
-eu-central-1 = "🍺"
-eu-west-1 = "🍀"
-
-
-[docker_context]
-format = "via [🐋 $context](blue bold)"
-
-
-[python]
-symbol = "🐍 "
-pyenv_version_name = true
-
+# Clear visibility for exit codes
 [status]
-style = "bg:blue"
-format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
-map_symbol = true
+style = "bg:red"
+symbol = "💣 "
+format = '[\[$symbol$status\]]($style) '
 disabled = false
-
-[terraform]
-format = "[🏎💨 $version$workspace]($style) "
