@@ -21,7 +21,6 @@ repos:
   - id: fix-byte-order-marker
   - id: forbid-new-submodules
   - id: mixed-line-ending
-  - id: no-commit-to-branch # Prevent commits on master directly
   - id: pretty-format-json
     args:
     - --autofix
