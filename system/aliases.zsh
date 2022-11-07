@@ -1,19 +1,11 @@
 #!/bin/sh
 
-# general use
-alias ls='exa'                                                         # ls
-alias l='exa -lbF --git'                                               # list, size, type, git
-alias ll='exa -lbGF --git'                                             # long list
-alias llm='exa -lbGd --git --sort=modified'                            # long list, modified date sort
-alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'  # all list
-alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+#exa for ls and tree
+alias ls='exa --icons --git' # ls
+alias tree="exa --tree --level=2"
 
-# specialty views
-alias lS='exa -1'               # one column, just names
-alias lt='exa --tree --level=2' # tree
-alias tree="exa --tree -F"
-
-alias cat='bat --style=header,grid'
+# bat for cat
+alias cat='bat --theme="Solarized (dark)"'
 
 alias t='tail -f'
 
@@ -28,16 +20,16 @@ alias watch='watch '
 
 # open, pbcopy and pbpaste on linux
 if [ "$(uname -s)" != "Darwin" ]; then
-	if [ -z "$(command -v pbcopy)" ]; then
-		if [ -n "$(command -v xclip)" ]; then
-			alias pbcopy="xclip -selection clipboard"
-			alias pbpaste="xclip -selection clipboard -o"
-		elif [ -n "$(command -v xsel)" ]; then
-			alias pbcopy="xsel --clipboard --input"
-			alias pbpaste="xsel --clipboard --output"
-		fi
-	fi
-	if [ -e /usr/bin/xdg-open ]; then
-		alias open="xdg-open"
-	fi
+  if [ -z "$(command -v pbcopy)" ]; then
+    if [ -n "$(command -v xclip)" ]; then
+      alias pbcopy="xclip -selection clipboard"
+      alias pbpaste="xclip -selection clipboard -o"
+    elif [ -n "$(command -v xsel)" ]; then
+      alias pbcopy="xsel --clipboard --input"
+      alias pbpaste="xsel --clipboard --output"
+    fi
+  fi
+  if [ -e /usr/bin/xdg-open ]; then
+    alias open="xdg-open"
+  fi
 fi

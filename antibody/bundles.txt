@@ -5,12 +5,12 @@ caarlos0/zsh-git-sync kind:path
 caarlos0/zsh-mkc
 caarlos0/zsh-open-pr kind:path
 mafredri/zsh-async
-rupa/z
 zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 marzocchi/zsh-notify
 droctothorpe/kubecolor
+agkozak/zsh-z
 
 # these should be at last!
 sindresorhus/pure

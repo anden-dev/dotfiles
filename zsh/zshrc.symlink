@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-
-
 # HOME/bin first then homebrew, other later
 export PATH="$HOME/bin:$PATH";
 export PATH="/opt/homebrew/bin:$PATH"
@@ -55,7 +53,7 @@ tmpfile=$(mktemp /tmp/zshrc.XXXXXX)
 echo '#!/usr/bin/env zsh' > "$tmpfile"
 
 # load everything but completion
-for file in ${(M)config_files:#*/completion.zsh}; do
+for file in ${${config_files}:#*/completion.zsh}; do
 	grep -vE "^#|^$" "$file" >> "$tmpfile"
 done
 
@@ -118,9 +116,6 @@ export PATH="/opt/homebrew/opt/yq@3/bin:$PATH"
 
 eval "$(direnv hook zsh)"
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/engl.andreas/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 export PATH="/opt/homebrew/sbin:$PATH"
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
@@ -131,4 +126,10 @@ eval "$(starship init zsh)"
 export STARSHIP_CACHE=~/.starship/cache
 
 export VF_TF_VERSION_DIR="$HOME/.terraform.versions"
-PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
+export PATH="/opt/homebrew/opt/util-linux/sbin:$PATH"
+
+export BAT_CONFIG_PATH="$HOME/.bat.conf"
