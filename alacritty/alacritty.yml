@@ -1,0 +1,67 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+live_config_reload: true
+
+font:
+  normal:
+    family: "Hack Nerd Font Mono"
+    style: Regular
+  bold:
+    family: "Hack Nerd Font Mono"
+    style: Bold
+  italic:
+    family: "Hack Nerd Font Mono"
+    style: Italic
+  bold_italic:
+    family: "Hack Nerd Font Mono"
+    style: Bold Italic
+  size: 15.0
+
+draw_bold_text_with_bright_colors: true
+
+scrolling:
+    history: 10000
+    multiplier: 10
+
+key_bindings:
+  # (macOS only)
+  - { key: K,              mods: Command, mode: ~Vi|~Search, chars: "\x0c"                 }
+  - { key: K,              mods: Command, mode: ~Vi|~Search, action: ClearHistory          }
+  - { key: Key0,           mods: Command,                    action: ResetFontSize         }
+  - { key: Equals,         mods: Command,                    action: IncreaseFontSize      }
+  - { key: Plus,           mods: Command,                    action: IncreaseFontSize      }
+  - { key: NumpadAdd,      mods: Command,                    action: IncreaseFontSize      }
+  - { key: Minus,          mods: Command,                    action: DecreaseFontSize      }
+  - { key: NumpadSubtract, mods: Command,                    action: DecreaseFontSize      }
+  - { key: V,              mods: Command,                    action: Paste                 }
+  - { key: C,              mods: Command,                    action: Copy                  }
+  - { key: C,              mods: Command, mode: Vi|~Search,  action: ClearSelection        }
+  - { key: H,              mods: Command,                    action: Hide                  }
+  - { key: H,              mods: Command|Alt,                action: HideOtherApplications }
+  - { key: M,              mods: Command,                    action: Minimize              }
+  - { key: Q,              mods: Command,                    action: Quit                  }
+  - { key: W,              mods: Command,                    action: Quit                  }
+  - { key: N,              mods: Command,                    action: SpawnNewInstance      }
+  - { key: F,              mods: Command|Control,            action: ToggleFullscreen      }
+  - { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
+  - { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
+
+  # German  https://github.com/alacritty/alacritty/wiki/Keyboard-mappings#mac-os-4
+
+  - { key: 28,      mods: Alt, chars: "{" }
+  - { key: 25,      mods: Alt, chars: "}" }
+  - { key: 37,      mods: Alt, chars: "@" }
+  - { key: 26,      mods: Alt|Shift, chars: "\\" }
+  - { key: 26,      mods: Alt, chars: "|" }
+  - { key: 45,      mods: Alt, chars: "~" }
+  - { key: 23,      mods: Alt, chars: "[" }
+  - { key: 22,      mods: Alt, chars: "]" }
+  - { key: 19,      mods: Shift, chars: "§"}
+
+  # - { key: Key5,     mods: Alt,        chars: "[" }
+  # - { key: Key6,     mods: Alt,        chars: "\x5d"                     }
+  # - { key: Key7,     mods: Alt|Shift,  chars: "\x5c"                     }
+  # - { key: Key7,     mods: Alt,        chars: "\x7c"                     }
+  # - { key: Key8,     mods: Alt,        chars: "\x7b"                     }
+  # - { key: Key9,     mods: Alt,        chars: "\x7d"                     }
+  # - { key: L,        mods: Alt,        chars: "\x40"                     }
