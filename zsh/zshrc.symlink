@@ -49,8 +49,12 @@ zsh_time_startup() {
 # all of our zsh files
 typeset -U config_files
 config_files=($DOTFILES/*/*.zsh)
+
 # load everything but the path and completion files
-source ${${config_files:#*/path.zsh}:#*/completion.zsh}
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
+  source "$file"
+done
+
 # add antigen plugins
 [[ -f "$HOME/.zsh_plugins.sh" ]] && source "$HOME/.zsh_plugins.sh"
 # asdf
@@ -76,7 +80,10 @@ fi
 } &!
 
 # load every completion after autocomplete loads
-source ${(M)config_files:#*/completion.zsh}
+for completion in ${(M)config_files:#*/completion.zsh}; do
+  source "$completion"
+done
+
 unset config_files updated_at
 
 # ref: https://github.com/junegunn/fzf
