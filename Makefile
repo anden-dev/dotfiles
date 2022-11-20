@@ -9,4 +9,7 @@ check:
 		--shellcheck-exclude=SC1071
 
 ci: check
-	./script/test
+	./script/test.sh
+
+install: install
+	./script/install.sh

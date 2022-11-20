@@ -1,5 +1,12 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+if ! hash colima 2>/dev/null; then
+	brew install colima
+fi
+
 mkdir -p "$HOME/.docker/completions"
+
+
 
 if command -v docker-compose >/dev/null 2>&1; then
 	curl -sL https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose \
