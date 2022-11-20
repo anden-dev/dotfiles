@@ -11,5 +11,5 @@ check:
 ci: check
 	./script/test.sh
 
-install: install
-	./script/install.sh
+install:
+	./script/run_installs.sh

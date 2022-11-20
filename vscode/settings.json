@@ -1,5 +1,5 @@
 {
-  "editor.fontSize": 15,
+  "editor.fontSize": 13,
   "editor.rulers": [
     80,
     120
@@ -19,7 +19,6 @@
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "none",
   "workbench.colorTheme": "Monokai Night",
-  "window.zoomLevel": 0,
   "extensions.ignoreRecommendations": false,
   "go.coverageDecorator": {
     "type": "gutter"
@@ -35,7 +34,6 @@
   "workbench.editor.showIcons": true,
   "explorer.confirmDragAndDrop": false,
   "search.smartCase": true,
-  "editor.fontFamily": "FuraCode Nerd Font Mono Retina, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "files.associations": {
     "*.tmpl": "gotemplate"
@@ -60,5 +58,9 @@
   "go.coverOnSingleTest": true,
   "terminal.integrated.cursorStyle": "line",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "go.installDependenciesWhenBuilding": false
+  "go.installDependenciesWhenBuilding": false,
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  },
+  "editor.fontFamily": "GoMono Nerd Font"
 }
