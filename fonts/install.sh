@@ -5,15 +5,15 @@
 # https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e
 
 success() {
-	# shellcheck disable=SC2059
-	printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+    # shellcheck disable=SC2059
+    printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
 }
 
 fail() {
-	# shellcheck disable=SC2059
-	printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
-	echo ''
-	exit
+    # shellcheck disable=SC2059
+    printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+    echo ''
+    exit
 }
 
 msg="tap homebrew/cask-fonts"

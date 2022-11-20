@@ -7,6 +7,6 @@ set -e
 cd "$(dirname "$0")"/..
 
 for installer in */install.sh; do
-	echo "› $installer..."
-	./$installer
-done;
+    echo "› $installer..."
+    ./$installer
+done
