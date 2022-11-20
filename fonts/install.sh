@@ -45,9 +45,3 @@ function ensure_font_cask() {
 ensure_font_cask font-hack-nerd-font
 # ensure_font_cask font-go-mono-nerd-font
 # ensure_font_cask font-jetbrains-mono-nerd-font
-
-
-
-
-
-

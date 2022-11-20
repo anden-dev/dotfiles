@@ -136,4 +136,3 @@ _evalcache direnv hook zsh
 
 # https://starship.rs/
 _evalcache starship init zsh
-

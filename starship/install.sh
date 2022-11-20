@@ -37,4 +37,3 @@ link_file() {
 
 mkdir -p "$HOME/.config" \
     && link_file "$DIR/starship.toml" "$HOME/.config/starship.toml"
-
