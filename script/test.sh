@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/usr/bin/env bash
+
 set -e
 
 # link to ~ and cd to it
@@ -13,7 +14,7 @@ git config --global user.email "dotfiles@demo.com"
 
 # bootstrap the mighty
 echo "boostraping..."
-./script/bootstrap
+./script/bootstrap.sh
 
 # load zshrc and check if antibody is working
 echo "sourcing ~/.zshrc"
