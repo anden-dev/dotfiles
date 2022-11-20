@@ -4,56 +4,50 @@
 # https://www.nerdfonts.com/font-downloads
 # https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e
 
-brew tap homebrew/cask-fonts
-# brew install --cask font-3270-nerd-font
-# brew install --cask font-fira-mono-nerd-font
-# brew install --cask font-inconsolata-go-nerd-font
-# brew install --cask font-inconsolata-lgc-nerd-font
-# brew install --cask font-inconsolata-nerd-font
-# brew install --cask font-monofur-nerd-font
-# brew install --cask font-overpass-nerd-font
-# brew install --cask font-ubuntu-mono-nerd-font
-# brew install --cask font-agave-nerd-font
-# brew install --cask font-arimo-nerd-font
-# brew install --cask font-anonymice-nerd-font
-# brew install --cask font-aurulent-sans-mono-nerd-font
-# brew install --cask font-bigblue-terminal-nerd-font
-# brew install --cask font-bitstream-vera-sans-mono-nerd-font
-# brew install --cask font-blex-mono-nerd-font
-# brew install --cask font-caskaydia-cove-nerd-font
-# brew install --cask font-code-new-roman-nerd-font
-# brew install --cask font-cousine-nerd-font
-# brew install --cask font-daddy-time-mono-nerd-font
-# brew install --cask font-dejavu-sans-mono-nerd-font
-# brew install --cask font-droid-sans-mono-nerd-font
-# brew install --cask font-fantasque-sans-mono-nerd-font
-# brew install --cask font-fira-code-nerd-font
-brew install --cask font-go-mono-nerd-font
-# brew install --cask font-gohufont-nerd-font
-brew install --cask font-hack-nerd-font
-# brew install --cask font-hasklug-nerd-font
-# brew install --cask font-heavy-data-nerd-font
-# brew install --cask font-hurmit-nerd-font
-# brew install --cask font-im-writing-nerd-font
-# brew install --cask font-iosevka-nerd-font
-brew install --cask font-jetbrains-mono-nerd-font
-# brew install --cask font-lekton-nerd-font
-# brew install --cask font-liberation-nerd-font
-# brew install --cask font-meslo-lg-nerd-font
-# brew install --cask font-monoid-nerd-font
-# brew install --cask font-mononoki-nerd-font
-# brew install --cask font-mplus-nerd-font
-# brew install --cask font-noto-nerd-font
-# brew install --cask font-open-dyslexic-nerd-font
-# brew install --cask font-profont-nerd-font
-# brew install --cask font-proggy-clean-tt-nerd-font
-# brew install --cask font-roboto-mono-nerd-font
-# brew install --cask font-sauce-code-pro-nerd-font
-# brew install --cask font-shure-tech-mono-nerd-font
-# brew install --cask font-space-mono-nerd-font
-# brew install --cask font-terminess-ttf-nerd-font
-# brew install --cask font-tinos-nerd-font
-# brew install --cask font-ubuntu-nerd-font
-# brew install --cask font-victor-mono-nerd-font
+success() {
+	# shellcheck disable=SC2059
+	printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+
+fail() {
+	# shellcheck disable=SC2059
+	printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+	echo ''
+	exit
+}
+
+msg="tap homebrew/cask-fonts"
+if ! brew tap | grep -q cask-fonts; then
+    if brew tap -q homebrew/cask-fonts; then
+        success "$msg"
+    else
+        fail "$msg"
+    fi
+else
+    success "skipped $msg"
+fi
+
+function ensure_font_cask() {
+    font_cask_name=$1
+    msg="brew install --cask $font_cask_name"
+    if ! brew info "$font_cask_name" &>/dev/null; then
+        if brew install -q --cask "$font_cask_name"; then
+            success "$msg"
+        else
+            fail "$msg"
+        fi
+    else
+        success "skipped $msg"
+    fi
+
+}
+
+ensure_font_cask font-hack-nerd-font
+# ensure_font_cask font-go-mono-nerd-font
+# ensure_font_cask font-jetbrains-mono-nerd-font
+
+
+
+
 
 
