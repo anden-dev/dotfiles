@@ -32,7 +32,11 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 
 alias mplayer="mpv --really-quiet"
 alias fortune_me="fortune $HOME/fortune/vodafone | lolcat"
-alias grep="ggrep"
+
+if [[ "${OS}" == "Darwin" ]]; then
+  alias grep="ggrep"
+fi
+
 
 alias picture_me="/Users/Engl.Andreas/.git-templates/hooks/post-commit"
 alias record_me="terminalizer record me"
