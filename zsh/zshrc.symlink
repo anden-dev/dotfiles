@@ -2,9 +2,7 @@
 
 zmodload zsh/zprof
 
-# HOME/bin first then homebrew, other later
-export PATH="$HOME/bin:$PATH"
-
+PATH_HOME="$HOME/bin"
 
 OS="$(uname)"
 
@@ -19,22 +17,15 @@ if [[ "${OS}" == "Darwin" ]]; then
 fi
 
 
-export PATH="$HOMEBREW_HOME/bin:$PATH"
-export PATH="$HOMEBREW_HOME/sbin:$PATH"
-export PATH="$HOMEBREW_HOME/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="$HOMEBREW_HOME/opt/util-linux/bin:$PATH"
-export PATH="$HOMEBREW_HOME/opt/util-linux/sbin:$PATH"
+PATH_HOMEBREW_BIN="$HOMEBREW_HOME/bin"
+PATH_HOMEBREW_SBIN="$HOMEBREW_HOME/sbin"
+PATH_HOMEBREW_GNUBIN="$HOMEBREW_HOME/opt/gnu-sed/libexec/gnubin"
+PATH_HOMEBREW_UTIL_LINUX_BIN="$HOMEBREW_HOME/opt/util-linux/bin"
+PATH_HOMEBREW_UTIL_LINUX_SBIN="$HOMEBREW_HOME/opt/util-linux/sbin"
 
 
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH_HOME:$PATH_HOMEBREW_BIN:$PATH_HOMEBREW_SBIN:$PATH_HOMEBREW_GNUBIN:$PATH_HOMEBREW_UTIL_LINUX_BIN:$PATH_HOMEBREW_UTIL_LINUX_SBIN:$PATH_HOMEBREW_YQ:$PATH"
 
-export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
-
-export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
-export PATH="/opt/homebrew/opt/util-linux/sbin:$PATH"
-
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 export EDITOR='vim'
 export VEDITOR='code'
@@ -48,13 +39,10 @@ export VF_TF_VERSION_DIR="$HOME/.terraform.versions"
 
 export BAT_CONFIG_PATH="$HOME/.bat.conf"
 
-export STARSHIP_CACHE=~/.starship/cache
+export STARSHIP_CACHE="$HOME/.starship/cache"
 export SHELL_SESSIONS_DISABLE=1
 
-export PATH="/opt/homebrew/sbin:$PATH"
 
-# ugly woraround to use pinned yq
-export PATH="/opt/homebrew/opt/yq@3/bin:$PATH"
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
