@@ -1,10 +1,40 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 zmodload zsh/zprof
 
 # HOME/bin first then homebrew, other later
-export PATH="$HOME/bin:$PATH";
+export PATH="$HOME/bin:$PATH"
+
+
+OS="$(uname)"
+
+export HOMEBREW_HOME="/opt/homebrew"
+
+if [[ "${OS}" == "Linux" ]]; then
+  export HOMEBREW_HOME="/home/linuxbrew/.linuxbrew" #linux
+fi
+
+if [[ "${OS}" == "Darwin" ]]; then
+  export HOMEBREW_HOME="/opt/homebrew"
+fi
+
+
+export PATH="$HOMEBREW_HOME/bin:$PATH"
+export PATH="$HOMEBREW_HOME/sbin:$PATH"
+export PATH="$HOMEBREW_HOME/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="$HOMEBREW_HOME/opt/util-linux/bin:$PATH"
+export PATH="$HOMEBREW_HOME/opt/util-linux/sbin:$PATH"
+
+
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+
+export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
+export PATH="/opt/homebrew/opt/util-linux/sbin:$PATH"
+
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 export EDITOR='vim'
 export VEDITOR='code'
@@ -14,19 +44,14 @@ export LANG=en_US.UTF-8
 export DOTFILES="$HOME/.dotfiles"
 
 export VF_TF_VERSION_DIR="$HOME/.terraform.versions"
-export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/opt/homebrew/opt/util-linux/bin:$PATH"
-export PATH="/opt/homebrew/opt/util-linux/sbin:$PATH"
+
 
 export BAT_CONFIG_PATH="$HOME/.bat.conf"
 
 export STARSHIP_CACHE=~/.starship/cache
+export SHELL_SESSIONS_DISABLE=1
 
 export PATH="/opt/homebrew/sbin:$PATH"
-export HISTSIZE=1000000000
-export SAVEHIST=$HISTSIZE
-setopt EXTENDED_HISTORY
 
 # ugly woraround to use pinned yq
 export PATH="/opt/homebrew/opt/yq@3/bin:$PATH"
@@ -40,55 +65,68 @@ zsh_time_startup() {
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
 
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-# shellcheck disable=SC1090
-[[ -f ~/.localrc ]] && source ~/.localrc
+#source "$HOME/.dotfiles/bin/bash-cache.sh"
+
+function source_all_the_things() {
+
+  # use .localrc for SUPER SECRET CRAP that you don't
+  # want in your public, versioned repo.
+  [[ -f "$HOME/.localrc" ]] && source "$HOME/.localrc"
+
+  # # ref: https://github.com/junegunn/fzf
+  [[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
+
+  # add antigen plugins
+  [[ -f "$HOME/.zsh_plugins.sh" ]] && source "$HOME/.zsh_plugins.sh"
+
+  # asdf
+  home_asdf="$(brew --prefix asdf)"
+  [[ -f "$home_asdf/asdf.sh" ]] && source "$home_asdf/asdf.sh"
 
 
-# all of our zsh files
-typeset -U config_files
-config_files=($DOTFILES/*/*.zsh)
+  # all of our zsh files
+  typeset -U config_files
+  config_files=($DOTFILES/*/*.zsh)
 
-# load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
-  source "$file"
-done
+  # load everything but the path and completion files
+  for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
+    source "$file"
+  done
 
-# add antigen plugins
-[[ -f "$HOME/.zsh_plugins.sh" ]] && source "$HOME/.zsh_plugins.sh"
-# asdf
-[[ -f $(brew --prefix asdf)/asdf.sh ]] && source $(brew --prefix asdf)/asdf.sh
+  autoload -Uz compinit bashcompinit
+  if [[ "${OS}" == "Darwin" ]]; then
+    if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
+      compinit
+      bashcompinit
+    else
+      compinit -C
+      bashcompinit -C
+    fi
+  else
+    compinit -C
+    bashcompinit -C
+  fi
+
+  # Execute code in the background to not affect the current session
+  {
+    # Compile zcompdump, if modified, to increase startup speed.
+    zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+    if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+      zcompile "$zcompdump"
+    fi
+  } &!
 
 
-autoload -Uz compinit bashcompinit
-if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
-	compinit
-	bashcompinit
-else
-	compinit -C
-	bashcompinit -C
-fi
+  # load every completion after autocomplete loads
+  for completion in ${(M)config_files:#*/completion.zsh}; do
+    source "$completion"
+  done
 
-# Execute code in the background to not affect the current session
-{
-	# Compile zcompdump, if modified, to increase startup speed.
-	zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
-	if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
-		zcompile "$zcompdump"
-	fi
-} &!
+  unset config_files
 
-# load every completion after autocomplete loads
-for completion in ${(M)config_files:#*/completion.zsh}; do
-  source "$completion"
-done
+} #&& bc::cache source_all_the_things 1m 10s PWD
 
-unset config_files updated_at
-
-# ref: https://github.com/junegunn/fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+source_all_the_things
 
 # you can also trigger by command **
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
@@ -110,7 +148,8 @@ unsetopt nomatch
 
 
 # Fast workaround
-export PATH="/Users/anden/.pyenv/shims:${PATH}"
+export PATH="$HOME/.pyenv/shims:${PATH}"
+
 # TODO offical install cost me 0.20 startup time
 # offical python nightmare
 # export PYENV_ROOT="$HOME/.pyenv"
@@ -133,6 +172,9 @@ export PATH="/Users/anden/.pyenv/shims:${PATH}"
 
 
 _evalcache direnv hook zsh
+#_evalcache pyenv virtualenv-init -
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # https://starship.rs/
 _evalcache starship init zsh

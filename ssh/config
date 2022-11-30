@@ -1,3 +1,5 @@
+Include /Users/engl.andreas/.colima/ssh_config
+
 #Host *
 #  ServerAliveInterval 60
 #  StrictHostKeyChecking no

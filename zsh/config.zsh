@@ -8,10 +8,6 @@ autoload -U "$DOTFILES"/functions/*(:t)
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 
-HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
-
 # don't nice background tasks
 setopt NO_BG_NICE
 setopt NO_HUP
@@ -20,25 +16,32 @@ setopt NO_BEEP
 setopt LOCAL_OPTIONS
 # allow functions to have local traps
 setopt LOCAL_TRAPS
-# share history between sessions ???
-setopt SHARE_HISTORY
-# add timestamps to history
-setopt EXTENDED_HISTORY
-setopt PROMPT_SUBST
-setopt CORRECT
-setopt COMPLETE_IN_WORD
-# adds history
-setopt APPEND_HISTORY
-# adds history incrementally and share it across sessions
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
-# don't record dupes in history
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_REDUCE_BLANKS
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_VERIFY
-setopt HIST_EXPIRE_DUPS_FIRST
+
+# setopt PROMPT_SUBST
+# setopt CORRECT
+# setopt COMPLETE_IN_WORD
+
+# HISTFILE=~/.zsh_history
+# HISTSIZE=100000
+# SAVEHIST=100000
+
+# # add timestamps to history
+# setopt EXTENDED_HISTORY
+
+# # adds history
+# setopt APPEND_HISTORY
+# # adds history incrementally and share it across sessions
+# setopt INC_APPEND_HISTORY
+# setopt SHARE_HISTORY
+
+# # don't record dupes in history
+# setopt HIST_IGNORE_ALL_DUPS
+# setopt HIST_REDUCE_BLANKS
+# setopt HIST_IGNORE_DUPS
+# setopt HIST_IGNORE_SPACE
+# setopt HIST_VERIFY
+# setopt HIST_EXPIRE_DUPS_FIRST
+
 # cd by typing directory name if it's not a command
 setopt auto_cd
 # autocorrect commands
@@ -87,8 +90,8 @@ bindkey '^[[3;5~' backward-delete-word
 
 # search history with fzf if installed, default otherwise
 if test -d /usr/local/opt/fzf/shell; then
-	# shellcheck disable=SC1091
-	. /usr/local/opt/fzf/shell/key-bindings.zsh
+  # shellcheck disable=SC1091
+  . /usr/local/opt/fzf/shell/key-bindings.zsh
 else
-	bindkey '^R' history-incremental-search-backward
+  bindkey '^R' history-incremental-search-backward
 fi

@@ -87,11 +87,10 @@ eu-west-2 = "LHR"
 
 [kubernetes]
 disabled = false
-format = 'on [⛵ ($cluster in )$context \($namespace\)](dimmed green) '
-detect_files = ['k8s']
+format = 'on [⛵ $context \($namespace\)](dimmed green) '
+#detect_files = ['k8s']
 [kubernetes.context_aliases]
-"dev.local.cluster.k8s" = "dev"
-"gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
+"[0-9]{12}_(?P<var_cluster>[\\w-]+)-.*" ="$var_cluster"
 
 [time]
 disabled = false
