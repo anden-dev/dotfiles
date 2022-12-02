@@ -37,7 +37,6 @@ if [[ "${OS}" == "Darwin" ]]; then
   alias grep="ggrep"
 fi
 
-
 alias picture_me="/Users/Engl.Andreas/.git-templates/hooks/post-commit"
 alias record_me="terminalizer record me"
 alias render_me="terminalizer render me"

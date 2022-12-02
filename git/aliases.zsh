@@ -32,7 +32,7 @@ gi() {
 
 alias git='nocorrect git'
 
-alias gcdroot='pushd $(git root)'
+alias gcdroot='pushd $(git rev-parse --show-toplevel)'
 
 #alias gbda='git branch --no-color --merged | command grep -vE "^(\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d'
 
