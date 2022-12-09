@@ -64,7 +64,7 @@
   "trunk.trunkGrayOutNonBlockingIssues": false,
   "redhat.telemetry.enabled": true,
   "editor.fontFamily": "Hack Nerd Font Mono",
-  "editor.fontSize": 16,
+  "editor.fontSize": 13,
   "files.autoSaveDelay": 5,
   "terminal.explorerKind": "external",
   "terminal.integrated.altClickMovesCursor": false,

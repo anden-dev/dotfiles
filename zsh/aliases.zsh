@@ -35,6 +35,7 @@ alias fortune_me="fortune $HOME/fortune/vodafone | lolcat"
 
 if [[ "${OS}" == "Darwin" ]]; then
   alias grep="ggrep"
+  alias tar="gtar"
 fi
 
 alias picture_me="/Users/Engl.Andreas/.git-templates/hooks/post-commit"
