@@ -58,7 +58,7 @@ zsh_time_startup() {
 }
 
 #source "$HOME/.dotfiles/bin/bash-cache.sh"
-
+# shellcheck disable=SC1035,SC1072
 function source_all_the_things() {
 
   # use .localrc for SUPER SECRET CRAP that you don't
@@ -100,14 +100,15 @@ function source_all_the_things() {
   fi
 
   # Execute code in the background to not affect the current session
+
   {
+
     # Compile zcompdump, if modified, to increase startup speed.
     zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
     if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
       zcompile "$zcompdump"
     fi
   } &!
-
 
   # load every completion after autocomplete loads
   for completion in ${(M)config_files:#*/completion.zsh}; do
