@@ -17,7 +17,7 @@
   "files.trimTrailingWhitespace": true,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "none",
-  "workbench.colorTheme": "Monokai Night",
+  "workbench.colorTheme": "Solarized Dark",
   "extensions.ignoreRecommendations": false,
   "go.coverageDecorator": {
     "type": "gutter"
@@ -39,9 +39,7 @@
   },
   "go.testTimeout": "3m",
   "breadcrumbs.enabled": true,
-  "telemetry.enableTelemetry": false,
   "terraform.telemetry.enabled": false,
-  "telemetry.enableCrashReporter": false,
   "go.useCodeSnippetsOnFunctionSuggest": true,
   "go.formatTool": "goimports",
   "search.useGlobalIgnoreFiles": true,
@@ -53,14 +51,10 @@
   "ruby.useLanguageServer": true,
   "go.autocompleteUnimportedPackages": true,
   "editor.fontWeight": "600",
-  "terminal.integrated.cursorBlinking": true,
   "go.coverOnSingleTest": true,
   "terminal.integrated.cursorStyle": "line",
   "javascript.updateImportsOnFileMove.enabled": "always",
   "go.installDependenciesWhenBuilding": false,
-  "terminal.integrated.env.osx": {
-    "FIG_NEW_SESSION": "1"
-  },
   "trunk.trunkGrayOutNonBlockingIssues": false,
   "redhat.telemetry.enabled": true,
   "editor.fontFamily": "Hack Nerd Font Mono",
@@ -68,5 +62,16 @@
   "files.autoSaveDelay": 5,
   "terminal.explorerKind": "external",
   "terminal.integrated.altClickMovesCursor": false,
-  "terminal.integrated.allowChords": false
+  "terminal.integrated.allowChords": false,
+  "vim.autoindent": false,
+  "terminal.integrated.enablePersistentSessions": false,
+  "terminal.integrated.environmentChangesRelaunch": false,
+  "terminal.integrated.enableFileLinks": false,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.gpuAcceleration": "off",
+  "terminal.integrated.shellIntegration.enabled": false,
+  "git.terminalAuthentication": false,
+  "task.showDecorations": false,
+  "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.defaultProfile.osx": "bash"
 }

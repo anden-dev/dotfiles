@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 zmodload zsh/zprof
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 PATH_HOME="$HOME/bin"
 
@@ -27,9 +28,9 @@ PATH_HOMEBREW_UTIL_LINUX_BIN="$HOMEBREW_HOME/opt/util-linux/bin"
 PATH_HOMEBREW_UTIL_LINUX_SBIN="$HOMEBREW_HOME/opt/util-linux/sbin"
 
 
+
+source $HOMEBREW_HOME/opt/asdf/libexec/asdf.sh
 export PATH="$PATH_HOME:$PATH_HOMEBREW_BIN:$PATH_HOMEBREW_SBIN:$PATH_HOMEBREW_GNUBIN:$PATH_HOMEBREW_GNUTAR:$PATH_HOMEBREW_FINDUTILS:$PATH_HOMEBREW_UTIL_LINUX_BIN:$PATH_HOMEBREW_UTIL_LINUX_SBIN:$PATH_HOMEBREW_YQ:$PATH"
-
-
 
 export EDITOR='vim'
 export VEDITOR='code'
@@ -109,6 +110,11 @@ function source_all_the_things() {
       zcompile "$zcompdump"
     fi
   } &!
+
+  #load every path
+  for pathfile in ${(M)config_files:#*/path.zsh}; do
+    source "$pathfile"
+  done
 
   # load every completion after autocomplete loads
   for completion in ${(M)config_files:#*/completion.zsh}; do
