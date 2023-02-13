@@ -135,13 +135,12 @@ vnoremap <Leader>s :sort<CR>
 vnoremap < <gv  " better indentation
 vnoremap > >gv  " better indentation
 
-set t_Co=256
 
 " Showing line numbers and length
 set number  " show line numbers
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
-highlight ColorColumn ctermbg=233
+
 
 " General
 set number  " Show line numbers
@@ -218,47 +217,69 @@ endif
 " :PlugInstall
 
 call plug#begin('~/.vim/plugged')
-Plug 'altercation/vim-colors-solarized' , { 'as': 'solarized'}
-"Plug 'tpope/vim-vividchalk' , { 'as': 'vividchalk'}
-Plug 'lifepillar/vim-solarized8'
+" Color Themes
+Plug 'tpope/vim-vividchalk' , { 'as': 'vividchalk'}
+Plug 'lifepillar/vim-solarized8' , {'as': 'solarized8'}
+Plug 'romainl/Apprentice' , {'as': 'apprentice' }
+Plug 'habamax/vim-bronzage', {'as': 'bronzage' }
+Plug 'morhetz/gruvbox'
 " Fuzzy search with :File
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
 " Fuzzy Search with CtrlP TODO Decide if you use one of those ore go with find: with ist cool enough
 " in my book.
 Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'ervandew/supertab'
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'ervandew/supertab'
+" Plug 'bronson/vim-trailing-whitespace'
 Plug 'airblade/vim-gitgutter'
-
-" Statuslinea
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " vim-surround: s is a text-object for delimiters; ss linewise
 " ys to add surround
 Plug 'tpope/vim-surround'
-" vim-commentary: gc is an operator to toggle comments; gcc linewise
 Plug 'tpope/vim-commentary'
-" vim-repeat: make vim-commentary and vim-surround work with .
 Plug 'tpope/vim-repeat'
-" vim-liquid: syntax stuff
-Plug 'tpope/vim-liquid'
-" :FixWhitespace
-" vim-markdown: some stuff for fenced language highlighting
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-eunuch'
 Plug 'w0rp/ale'
 Plug 'hashivim/vim-terraform'
-Plug 'axelf4/vim-strip-trailing-whitespace'
+"Plug 'axelf4/vim-strip-trailing-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
-"colorscheme vividchalk
+
+set colorcolumn=0
+if $TERM_PROGRAM !=# 'Apple_Terminal'
+  set termguicolors
+endif
+
+"let s:cs = 'none'
+"let s:cs = 'solarized8'
+"let s:cs = 'apprentice'
+"let s:cs = 'bronzage'
+let s:cs = 'gruvbox'
+"let s:cs = 'vividchalk'
+
+if s:cs ==# 'vividchalk'
+  silent! colorscheme vividchalk
+elseif s:cs ==# 'apprentice'
+  silent! colorscheme apprentice
+elseif s:cs ==# 'bronzage'
+  silent! colorscheme bronzage
+elseif s:cs ==# 'solarized8'
+  silent! colorscheme solarized8
+elseif s:cs ==# 'gruvbox'
+  silent! colorscheme gruvbox
+endif
+
+""set cursorline
+set noshowmode
+
 set background=dark
-autocmd vimenter * ++nested colorscheme solarized8
 let g:solarized_extra_hi_groups = 1
 
+" set t_Co=256
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
