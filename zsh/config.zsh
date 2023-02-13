@@ -21,26 +21,23 @@ setopt LOCAL_TRAPS
 # setopt CORRECT
 # setopt COMPLETE_IN_WORD
 
-# HISTFILE=~/.zsh_history
-# HISTSIZE=100000
-# SAVEHIST=100000
-
+export HISTFILE=~/.zsh_history
+# Ref: https://www.soberkoder.com/better-zsh-history/
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
 # # add timestamps to history
-# setopt EXTENDED_HISTORY
+#setopt EXTENDED_HISTORY
 
-# # adds history
-# setopt APPEND_HISTORY
-# # adds history incrementally and share it across sessions
-# setopt INC_APPEND_HISTORY
-# setopt SHARE_HISTORY
+#setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 
-# # don't record dupes in history
-# setopt HIST_IGNORE_ALL_DUPS
-# setopt HIST_REDUCE_BLANKS
-# setopt HIST_IGNORE_DUPS
-# setopt HIST_IGNORE_SPACE
-# setopt HIST_VERIFY
-# setopt HIST_EXPIRE_DUPS_FIRST
+
+#setopt HIST_IGNORE_ALL_DUPS
+#setopt HIST_REDUCE_BLANKS
+#setopt HIST_IGNORE_DUPS
+#setopt HIST_IGNORE_SPACE
+#setopt HIST_VERIFY
+#setopt HIST_EXPIRE_DUPS_FIRST
 
 # cd by typing directory name if it's not a command
 setopt auto_cd
