@@ -153,3 +153,5 @@ eval "$(pyenv virtualenv-init -)"
 
 # https://starship.rs/
 _evalcache starship init zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

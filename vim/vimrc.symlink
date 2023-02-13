@@ -219,7 +219,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized' , { 'as': 'solarized'}
-Plug 'tpope/vim-vividchalk' , { 'as': 'vividchalk'}
+"Plug 'tpope/vim-vividchalk' , { 'as': 'vividchalk'}
+Plug 'lifepillar/vim-solarized8'
 " Fuzzy search with :File
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -243,26 +244,23 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 " vim-liquid: syntax stuff
 Plug 'tpope/vim-liquid'
+" :FixWhitespace
 " vim-markdown: some stuff for fenced language highlighting
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-eunuch'
-" :FixWhitespace
-Plug 'bronson/vim-trailing-whitespace'
 Plug 'w0rp/ale'
 Plug 'hashivim/vim-terraform'
+Plug 'axelf4/vim-strip-trailing-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
-
-" Solarzied Config
-let g:solarized_termcolors=256
+"colorscheme vividchalk
 set background=dark
-colorscheme solarized
-" load vividchalk
-colorscheme vividchalk
+autocmd vimenter * ++nested colorscheme solarized8
+let g:solarized_extra_hi_groups = 1
 
-
-call plug#end()
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " ctrlp config
 let g:ctrlp_max_height = 50
