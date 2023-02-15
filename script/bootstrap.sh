@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 #
 # bootstrap installs things.
 
@@ -105,4 +105,7 @@ install_dotfiles
 #	fail "error installing dependencies"
 #fi
 
+
 echo '  All installed!'
+echo "Sourcing our .zshrc"
+source $HOME/.zshrc
