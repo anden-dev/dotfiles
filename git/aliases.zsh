@@ -2,7 +2,7 @@
 if command -v hub >/dev/null 2>&1; then
   alias git='hub'
 fi
-
+alias gt='git tag -l | xargs git tag -d && git fetch -t'
 alias gl='git pull --prune'
 alias glg="git log --graph --decorate --oneline --abbrev-commit"
 alias glga="glg --all"
