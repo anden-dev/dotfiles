@@ -152,3 +152,5 @@ eval "$(pyenv virtualenv-init -)"
 _evalcache starship init zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f ~/.resh/shellrc ] && source ~/.resh/shellrc # this line was added by RESH (Rich Enchanced Shell History)
