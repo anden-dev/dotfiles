@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 
-zmodload zsh/zprof
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-
 OS="$(uname)"
 
 export HOMEBREW_HOME="/opt/homebrew"
-
 if [[ "${OS}" == "Linux" ]]; then
   export HOMEBREW_HOME="/home/linuxbrew/.linuxbrew" #linux
 fi
@@ -14,7 +10,6 @@ fi
 if [[ "${OS}" == "Darwin" ]]; then
   export HOMEBREW_HOME="/opt/homebrew"
 fi
-
 
 PATH_HOMEBREW_BIN="$HOMEBREW_HOME/bin"
 PATH_HOMEBREW_SBIN="$HOMEBREW_HOME/sbin"
@@ -29,24 +24,25 @@ source $HOMEBREW_HOME/opt/asdf/libexec/asdf.sh
 
 export PATH="$HOME/bin:$PATH_HOMEBREW_COMBINED:/usr/local/bin:$PATH"
 
+# use .localrc for SUPER SECRET CRAP that you don't
+# want in your public, versioned repo.
+[[ -f "$HOME/.localrc" ]] && source "$HOME/.localrc"
+
+
 export EDITOR='vim'
 export VEDITOR='code'
 export VISUAL=$EDITOR
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export DOTFILES="$HOME/.dotfiles"
-
 export VF_TF_VERSION_DIR="$HOME/.terraform.versions"
-
-
 export BAT_CONFIG_PATH="$HOME/.bat.conf"
-
 export STARSHIP_CACHE="$HOME/.starship/cache"
 export SHELL_SESSIONS_DISABLE=1
-
-
-
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+zmodload zsh/zprof
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 
 # for debugging of slow startup tines
@@ -55,13 +51,8 @@ zsh_time_startup() {
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
 
-#source "$HOME/.dotfiles/bin/bash-cache.sh"
 # shellcheck disable=SC1035,SC1072
 function source_all_the_things() {
-
-  # use .localrc for SUPER SECRET CRAP that you don't
-  # want in your public, versioned repo.
-  [[ -f "$HOME/.localrc" ]] && source "$HOME/.localrc"
 
   # # ref: https://github.com/junegunn/fzf
   [[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
@@ -142,7 +133,6 @@ _fzf_compgen_dir() {
 # disable not found
 unsetopt nomatch
 
-
 _evalcache direnv hook zsh
 #_evalcache pyenv virtualenv-init -
 eval "$(pyenv init -)"
@@ -150,7 +140,3 @@ eval "$(pyenv virtualenv-init -)"
 
 # https://starship.rs/
 _evalcache starship init zsh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-[ -f ~/.resh/shellrc ] && source ~/.resh/shellrc # this line was added by RESH (Rich Enchanced Shell History)
