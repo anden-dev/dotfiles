@@ -8,7 +8,6 @@ alias grep="grep --color=auto"
 alias duf="du -sh * | sort -hr"
 alias less="less -r"
 
-
 # quick hack to make watch work with aliases
 alias watch='watch '
 alias yy='pbpcopy'
@@ -19,6 +18,6 @@ alias jjj='pbpaste | jsonpp'
 # FUNCTIONS -------------------------------------------------------------------
 
 function take {
-    mkdir -p $1
-    cd $1
+  mkdir -p $1
+  cd $1
 }
