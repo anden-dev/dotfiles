@@ -133,6 +133,7 @@ _fzf_compgen_dir() {
 # disable not found
 unsetopt nomatch
 
+# you can reset the cache with _evalcache_clear
 _evalcache direnv hook zsh
 #_evalcache pyenv virtualenv-init -
 eval "$(pyenv init -)"

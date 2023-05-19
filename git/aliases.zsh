@@ -1,4 +1,3 @@
-#!/bin/sh
 if command -v hub >/dev/null 2>&1; then
   alias git='hub'
 fi
@@ -41,3 +40,5 @@ alias gbda_merged='git fetch -p; git branch --merged | grep -vE "(^\*|master|dev
 alias gbda_unmerged='git branch --no-merged | grep -vE "(^\*|master|dev)" | xargs git branch -D'
 # delete all local branches (merged and unmerged).
 alias gbda_hold_my_beer='git branch | grep -vE "(^\*|master|dev)" | xargs git branch -D'
+
+alias gprecommit='pre-commit install --hook-type commit-msg -f; pre-commit install -f'
