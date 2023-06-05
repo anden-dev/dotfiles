@@ -1,6 +1,6 @@
 export LSCOLORS='exfxcxdxbxegedabagacad'
 export CLICOLOR=true
-
+export SAML2AWS_DISABLE_KEYCHAIN=1
 fpath=($DOTFILES/functions $fpath)
 
 autoload -U "$DOTFILES"/functions/*(:t)
